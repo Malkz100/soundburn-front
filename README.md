@@ -1,4 +1,4 @@
-# Laravel Breeze - Next.js Edition 🏝️
+ # Soundburn API Frontend - Next.js Edition 🏝️
 
 ## Introduction
 
