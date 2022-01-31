@@ -1,8 +1,6 @@
 import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
 import Link from 'next/link'
-//import fetch from 'node-fetch';
-//import { NextPage, GetStaticPaths, GetStaticProps } from 'next';
 
 // customers will be populated at build time by getStaticProps()
 function CustomerList({ customers }) {
@@ -32,8 +30,6 @@ function CustomerList({ customers }) {
                             {customers.map((customer) => (
                                 <li>
                                     <Link href="/customerdetails" as={`/customerdetails/${customer.id}`} >
-                                    {/*<Link as={`/api/customers/${customer.id}`} href="http://localhost:8000/api/customers/[id]">*/}
-                                    {/*<Link as={`/customers/${customers.id}`} href={`/customers/[id]`}>*/}
                                         <a className="ml-4 text-sm text-gray-700 underline">
                                             {customer.title}{' '}
                                             {customer.firstname}{' '}
@@ -50,40 +46,6 @@ function CustomerList({ customers }) {
         </AppLayout>
     )
 }
-
-// This function gets called at build time
-// export async function getStaticPaths() {
-//     // Call an external API endpoint to get posts
-//     const res = await fetch(
-//         'http://localhost:8000/api/customers',
-//     )
-//     const customers = await res.json()
-//
-//     // Get the paths we want to pre-render based on posts
-//     const paths = customers.map(customer => ({
-//         params: { id: customer.id },
-//     }))
-//
-//     // We'll pre-render only these paths at build time.
-//     // { fallback: false } means other routes should 404.
-//     return { paths, fallback: false }
-// }
-
-// export const getStaticPaths: GetStaticPaths = async () => {
-//     const customers = await fetch(
-//         'http://localhost:8000/api/customers'
-//     ).then((response) => response.json());
-//
-//     const ids = customers.map((customer) => customer.id);
-//     const paths = ids.map((id) => ({ params: { id: id.toString() } }));
-//
-//     return {
-//         paths,
-//         fallback: false,
-//     };
-// };
-
-
 
 // This function gets called at build time on server-side.
 // It won't be called on client-side, so you can even do

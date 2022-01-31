@@ -29,10 +29,12 @@ function CustomerDetails({ details }) {
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div className="p-6 bg-white border-b border-gray-200">
-                        <h1>
-                            Username: {details.username}
-                        </h1>
-                        <p>{details.title} {details.firstname} {details.lastname}</p>
+                        <h1>Cust No: {details.id}</h1>
+                        <h1>Username: {details.username}</h1>
+                        <p>
+                            {details.title} {details.firstname}{' '}
+                            {details.lastname}
+                        </p>
                         <p>{details.address1}</p>
                         <p>{details.address2}</p>
                         <p>{details.towncity}</p>
@@ -47,15 +49,12 @@ function CustomerDetails({ details }) {
     )
 }
 
-
 export async function getStaticPaths() {
-    // Call an external API endpoint to get posts
-    const res = await fetch(
-        'http://localhost:8000/api/customers',
-    )
+    // Call an external API endpoint to get customers
+    const res = await fetch('http://localhost:8000/api/customers')
     const customers = await res.json()
 
-    // Get the paths we want to pre-render based on posts
+    // Get the paths we want to pre-render based on customers
     const paths = customers.map(customer => ({
         params: { id: customer.id.toString() },
     }))
@@ -65,15 +64,14 @@ export async function getStaticPaths() {
     return { paths, fallback: false }
 }
 
-
 // This also gets called at build time
 export async function getStaticProps({ params }) {
-    // params contains the post `id`.
-    // If the route is like /posts/1, then params.id is 1
+    // params contains the customer `id`.
+    // If the route is like /customers/1, then params.id is 1
     const res = await fetch(`http://localhost:8000/api/customers/${params.id}`)
     const details = await res.json()
 
-    // Pass post data to the page via props
+    // Pass customer data to the page via props
     return { props: { details } }
 }
 export default CustomerDetails
