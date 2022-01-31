@@ -51,7 +51,7 @@ function CustomerList({ customers }) {
 // It won't be called on client-side, so you can even do
 // direct database queries.
 export async function getStaticProps() {
-    // Call an external API endpoint to get posts.
+    // Call an external API endpoint to get customers.
     // You can use any data fetching library
     const res = await fetch('http://localhost:8000/api/customers')
     const customers = await res.json()
