@@ -35,7 +35,9 @@ function CustomerList({ customers }) {
                                     {/*<Link as={`/api/customers/${customer.id}`} href="http://localhost:8000/api/customers/[id]">*/}
                                     {/*<Link as={`/customers/${customers.id}`} href={`/customers/[id]`}>*/}
                                         <a className="ml-4 text-sm text-gray-700 underline">
-                                            {customer.title} {customer.username}{' '}
+                                            {customer.title}{' '}
+                                            {customer.firstname}{' '}
+                                            {customer.lastname}{' '}
                                             {customer.id}
                                         </a>
                                     </Link>

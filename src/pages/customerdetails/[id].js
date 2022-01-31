@@ -33,7 +33,13 @@ function CustomerDetails({ details }) {
                             Username: {details.username}
                         </h1>
                         <p>{details.title} {details.firstname} {details.lastname}</p>
+                        <p>{details.address1}</p>
+                        <p>{details.address2}</p>
+                        <p>{details.towncity}</p>
+                        <p>{details.county}</p>
                         <p>{details.postcode}</p>
+                        <p>{details.phone}</p>
+                        <p>{details.email}</p>
                     </div>
                 </div>
             </div>
