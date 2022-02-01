@@ -27,14 +27,16 @@ function CustomerList({ customers }) {
                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div className="p-6 bg-white border-b border-gray-200">
                         <ul>
-                            {customers.map((customer) => (
+                            {customers.map(customer => (
+                                // eslint-disable-next-line react/jsx-key
                                 <li>
-                                    <Link href="/customerdetails" as={`/customerdetails/${customer.id}`} >
+                                    <Link
+                                        href="/customerdetails"
+                                        as={`/customerdetails/${customer.id}`}>
                                         <a className="ml-4 text-sm text-gray-700 underline">
                                             {customer.title}{' '}
                                             {customer.firstname}{' '}
-                                            {customer.lastname}{' '}
-                                            {customer.id}
+                                            {customer.lastname} {customer.id}
                                         </a>
                                     </Link>
                                 </li>

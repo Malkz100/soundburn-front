@@ -1,6 +1,6 @@
 import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
-import Link from "next/link"
+import Link from 'next/link'
 
 const Dashboard = () => {
     return (
@@ -10,7 +10,6 @@ const Dashboard = () => {
                     Soundburn Dashboard
                 </h2>
             }>
-
             <Head>
                 <title>Soundburn - Dashboard</title>
             </Head>
