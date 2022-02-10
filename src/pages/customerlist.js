@@ -13,6 +13,12 @@ function CustomerList({ customers }) {
             }>
             <Head>
                 <title>Customer List</title>
+                <link
+                    rel="stylesheet"
+                    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css"
+                    integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg=="
+                    crossOrigin="anonymous"
+                />
             </Head>
             <div className="py-6">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -23,26 +29,90 @@ function CustomerList({ customers }) {
                     </div>
                 </div>
             </div>
-            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div className="p-6 bg-white border-b border-gray-200">
-                        <ul>
-                            {customers.map(customer => (
-                                // eslint-disable-next-line react/jsx-key
-                                <li>
-                                    <Link
-                                        href="/customerdetails"
-                                        as={`/customerdetails/${customer.id}`}>
-                                        <a className="ml-4 text-sm text-gray-700 underline">
-                                            {customer.title}{' '}
-                                            {customer.firstname}{' '}
-                                            {customer.lastname} {customer.id}
-                                        </a>
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+            <div className="container-fluid">
+                <div className="row">
+                    <main
+                        role="main"
+                        className="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                        <div className="card mt-5">
+                            <div className="card-header">
+                                <div className="float-left">
+                                    <h3>Customer Admin Panel</h3>
+                                </div>
+                            </div>
+
+                            <div className="card-body">
+                                <div className="row">
+                                    <div className="col-lg-12 mt-1 mr-1">
+                                        <div className="float-right">
+                                            <a
+                                                className="btn btn-success"
+                                                href="{{ route('customer.create') }}">
+                                                {' '}
+                                                Add Customer
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row mt-2">
+                                    <div className="col-lg-12">
+                                        <table className="table table-bordered">
+                                            <tr>
+                                                <th>Cust ID</th>
+                                                <th>Title</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Post Code</th>
+                                                <th width="280px">Action</th>
+                                            </tr>
+                                            {customers.map(customer => (
+                                                // eslint-disable-next-line react/jsx-key
+                                                <tr>
+                                                    <td>{customer.id}</td>
+                                                    <td>{customer.title}</td>
+                                                    <td>
+                                                        {customer.firstname}
+                                                    </td>
+                                                    <td>{customer.lastname}</td>
+                                                    <td>{customer.postcode}</td>
+                                                    <td>
+                                                        <Link
+                                                            href="/customerdetails"
+                                                            as={`/customerdetails/${customer.id}`}>
+                                                            <a
+                                                                className="btn btn-info"
+                                                                href="{{ route('customer.show',$customer->id) }}">
+                                                                Show
+                                                            </a>
+                                                        </Link>
+                                                        <Link
+                                                            href="/customerdetails"
+                                                            as={`/customerdetails/${customer.id}`}>
+                                                            <a
+                                                                className="btn btn-primary"
+                                                                href="{{ route('customer.edit',$customer->id) }}">
+                                                                Edit
+                                                            </a>
+                                                        </Link>
+
+                                                        {/*@csrf*/}
+                                                        {/*@method('DELETE')*/}
+
+                                                        <button
+                                                            type="submit"
+                                                            className="btn btn-danger">
+                                                            Delete
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </table>
+                                        {/*{!! $customers->links() !!}*/}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
                 </div>
             </div>
         </AppLayout>
