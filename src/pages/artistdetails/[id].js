@@ -43,7 +43,7 @@ function ArtistDetails({ details }) {
                         <p>{details.phone}</p>
                         <p>{details.email}</p>
                         <p>
-                                <a href={details.website}>{details.website}</a>
+                            <a href={details.website}>{details.website}</a>
                         </p>
                     </div>
                 </div>
