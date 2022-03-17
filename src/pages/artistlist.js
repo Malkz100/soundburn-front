@@ -3,16 +3,16 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 // customers will be populated at build time by getStaticProps()
-function CustomerList({ customers }) {
+function ArtistList({ artists }) {
     return (
         <AppLayout
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Customer Dashboard
+                    Artist Dashboard
                 </h2>
             }>
             <Head>
-                <title>Customer List</title>
+                <title>Artist List</title>
                 <link
                     rel="stylesheet"
                     href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css"
@@ -24,7 +24,7 @@ function CustomerList({ customers }) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 bg-white border-b border-gray-200">
-                            Customer List
+                            Artist List
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@ function CustomerList({ customers }) {
                         <div className="card mt-5">
                             <div className="card-header">
                                 <div className="float-left">
-                                    <h3>Customer Admin Panel</h3>
+                                    <h3>Artist Admin Panel</h3>
                                 </div>
                             </div>
 
@@ -47,9 +47,9 @@ function CustomerList({ customers }) {
                                         <div className="float-right">
                                             <a
                                                 className="btn btn-success"
-                                                href="{{ route('customer.create') }}">
+                                                href="{{ route('artist.create') }}">
                                                 {' '}
-                                                Add Customer
+                                                Add Artist
                                             </a>
                                         </div>
                                     </div>
@@ -58,39 +58,39 @@ function CustomerList({ customers }) {
                                     <div className="col-lg-12">
                                         <table className="table table-bordered">
                                             <tr>
-                                                <th>Cust ID</th>
-                                                <th>Title</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Post Code</th>
+                                                <th>Artist ID</th>
+                                                <th>Name</th>
+                                                <th>Bio</th>
+                                                <th>Website</th>
+                                                {/*<th>Post Code</th>*/}
                                                 <th width="280px">Action</th>
                                             </tr>
-                                            {customers.map(customer => (
+                                            {artists.map(artist => (
                                                 // eslint-disable-next-line react/jsx-key
                                                 <tr>
-                                                    <td>{customer.id}</td>
-                                                    <td>{customer.title}</td>
+                                                    <td>{artist.id}</td>
+                                                    <td>{artist.name}</td>
                                                     <td>
-                                                        {customer.firstname}
+                                                        {artist.bio}
                                                     </td>
-                                                    <td>{customer.lastname}</td>
-                                                    <td>{customer.postcode}</td>
+                                                    <td>{artist.website}</td>
+                                                    {/*<td>{artist.postcode}</td>*/}
                                                     <td>
                                                         <Link
-                                                            href="/customerdetails"
-                                                            as={`/customerdetails/${customer.id}`}>
+                                                            href="/artistdetails"
+                                                            as={`/artistdetails/${artist.id}`}>
                                                             <a
                                                                 className="btn btn-info"
-                                                                href="{{ route('customer.show',$customer->id) }}">
+                                                                href="{{ route('artist.show',$artist->id) }}">
                                                                 Show
                                                             </a>
                                                         </Link>
                                                         <Link
-                                                            href="/customerdetails"
-                                                            as={`/customerdetails/${customer.id}`}>
+                                                            href="/artistdetails"
+                                                            as={`/artistdetails/${artist.id}`}>
                                                             <a
                                                                 className="btn btn-primary"
-                                                                href="{{ route('customer.edit',$customer->id) }}">
+                                                                href="{{ route('artist.edit',$artist->id) }}">
                                                                 Edit
                                                             </a>
                                                         </Link>
@@ -99,8 +99,8 @@ function CustomerList({ customers }) {
                                                         {/*@method('DELETE')*/}
 
                                                         <Link
-                                                            href="/customerdetails"
-                                                            as={`/customerdetails/${customer.id}`}>
+                                                            href="/artistdetails"
+                                                            as={`/artistdetails/${artist.id}`}>
                                                             <a
                                                             //type="submit"
                                                                 className="btn btn-danger">
@@ -111,7 +111,7 @@ function CustomerList({ customers }) {
                                                 </tr>
                                             ))}
                                         </table>
-                                        {/*{!! $customers->links() !!}*/}
+                                        {/*{!! $artists->links() !!}*/}
                                     </div>
                                 </div>
                             </div>
@@ -129,16 +129,16 @@ function CustomerList({ customers }) {
 export async function getStaticProps() {
     // Call an external API endpoint to get customers.
     // You can use any data fetching library
-    const res = await fetch('http://localhost:8000/api/customers')
-    const customers = await res.json()
+    const res = await fetch('http://localhost:8000/api/artists')
+    const artists = await res.json()
 
     // By returning { props: { customers } }, the CustomerList component
     // will receive `customers` as a prop at build time
     return {
         props: {
-            customers,
+            artists,
         },
     }
 }
 
-export default CustomerList
+export default ArtistList
