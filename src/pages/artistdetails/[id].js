@@ -54,10 +54,10 @@ function ArtistDetails({ details }) {
 
 export async function getStaticPaths() {
     // Call an external API endpoint to get customers
-    const res = await fetch('http://localhost:8000/api/customers')
+    const res = await fetch('http://localhost:8000/api/artists')
     const artists = await res.json()
 
-    // Get the paths we want to pre-render based on customers
+    // Get the paths we want to pre-render based on artists
     const paths = artists.map(artist => ({
         params: { id: artist.id.toString() },
     }))
@@ -74,7 +74,7 @@ export async function getStaticProps({ params }) {
     const res = await fetch(`http://localhost:8000/api/artists/${params.id}`)
     const details = await res.json()
 
-    // Pass customer data to the page via props
+    // Pass artist data to the page via props
     return { props: { details } }
 }
 export default ArtistDetails
